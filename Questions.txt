@@ -1,0 +1,3 @@
+Does it make sense to give a max memporie and storage to each saiber.
+So they can define themselfe if they want to give this specific machine this much RAM
+This would make it better for the saibers

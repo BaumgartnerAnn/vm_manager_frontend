@@ -1,0 +1,14 @@
+<div class="slider-container">
+    <h2 class="center">{{ type }}</h2>
+    <mat-slider class="center" [min]="min" [max]="max" [step]="step_slider">
+        <input matSliderThumb [(ngModel)]="value" (ngModelChange)="valueChange.emit(value)">
+    </mat-slider>
+    <mat-form-field>
+        <div [class]="type">
+            <!-- TODO: When User type letter e, it the length control breaks. Disallow letter e -->
+            <input matInput (ngModelChange)="valueChange.emit(value)" [min]="min" [max]="max" [step]="step_input"
+                type="number" [maxlength]="maxlength" [(ngModel)]="value"
+                oninput="javascript: if (this.value > parseInt(this.max)) this.value = this.max;" />
+        </div>
+    </mat-form-field>
+</div>

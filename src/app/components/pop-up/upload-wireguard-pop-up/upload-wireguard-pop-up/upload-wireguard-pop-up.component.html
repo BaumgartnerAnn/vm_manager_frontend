@@ -1,0 +1,31 @@
+<h1>Wireguard configuration</h1>
+<div class="content">
+    <div class="row">
+        <div class="key">
+            Public key
+        </div>
+        <form class="input-field">
+            <mat-form-field class="example-full-width">
+                <input [type]="'text'" matInput [value]="publicKey" (input)="updatePublicKey($event)">
+            </mat-form-field>
+        </form>              
+    </div>
+    <div class="row">
+        <div class="key">
+            Privat key
+        </div>
+        <form class="input-field">
+            <mat-form-field class="example-full-width">
+                <input [type]="hiddenPrivatKey ? 'password' : 'text'" matInput [value]="privatKey" (input)="updatePrivateKey($event)">
+                <mat-icon matSuffix (click)="changePrivateKeyHidden()" class="password-icon">
+                    {{hiddenPrivatKey ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </mat-form-field>
+        </form>              
+    </div>
+    <div class="button-div">
+        <button mat-raised-button color="primary" [disabled]="publicKey === '' && privatKey !== ''" (click)="getWireguradConfig()">
+            get Wireguard config
+        </button>
+    </div>
+</div>

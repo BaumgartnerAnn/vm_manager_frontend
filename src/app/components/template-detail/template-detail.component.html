@@ -1,0 +1,21 @@
+<div *ngFor="let template of templates">
+    <div class="content-wrapper" *ngIf="template; else elseblock">
+        <mat-expansion-panel (opened)="onPanelOpen(template)" (closed)="onPanelClose(template)">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <span class="vm-name">{{ template.properties.get('name')?.value }}</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-action-row>
+                <button mat-raised-button color="{{ 'primary' }}" (click)="onDeployClick(template)">
+                    <mat-icon>{{ 'publish' }}</mat-icon>
+                    {{ NameOfButton }}
+                </button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </div>
+
+    <ng-template #elseblock>
+        <p>OOps Something went wrong</p>
+    </ng-template>
+</div>

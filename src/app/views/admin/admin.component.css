@@ -1,0 +1,28 @@
+span {
+    margin: auto;
+}
+.card-container {
+    display: flex;
+    margin: 10px;
+    gap: 20px; 
+}
+.card{
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: row;
+}
+.card1 {
+    width: 50%;
+}
+.card2 {
+    width: 100%;
+    overflow: auto;
+    height: calc(100vh - 84px);
+}
+.algin-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}

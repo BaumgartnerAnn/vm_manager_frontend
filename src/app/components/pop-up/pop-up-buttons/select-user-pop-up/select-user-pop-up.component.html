@@ -1,0 +1,22 @@
+<mat-dialog-content>
+    <mat-selection-list #list>
+        <div *ngFor="let user of this.users">
+            <mat-list-option [value]="user" (click)="userSelected(user)">
+                {{ user.properties.get('name')?.value }}
+            </mat-list-option>
+            <input type="checkbox" [(ngModel)]="user.selected" [name]="user.properties.get('name')?.value" hidden>
+        </div>
+    </mat-selection-list>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <div class="right-side">
+        <button mat-raised-button color="primary" (click)="selectAll(list)">
+            {{ allSelected ? 'Deselect All' : 'Select All' }}
+        </button>
+        <button mat-raised-button color="primary" (click)="onClickDeploy()" [disabled]="checkIfNoUsersSelected()">
+            Deploy
+        </button>
+        <button mat-raised-button mat-dialog-close>Cancel</button>
+    </div>
+</mat-dialog-actions>

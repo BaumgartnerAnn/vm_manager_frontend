@@ -1,0 +1,47 @@
+tr.detail-row {
+  height: 0;
+}
+  
+tr.element-row:not(.expanded-row):hover {
+  background: white;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: white;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.element-description {
+  padding: 16px;
+}
+
+
+table{
+  /* padding: 15 15 15 0; */
+  padding: 15px;
+  max-height: 50vh;
+}
+
+mat-divider {
+  width: calc(100% - 30px);
+  margin-left: 15px;
+  margin-top: -15px; 
+  margin-bottom: 10px;
+}
+.padding {
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+.right-side{
+  display: flex;
+  margin-left: auto;
+  margin-right: 0;
+}

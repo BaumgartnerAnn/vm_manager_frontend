@@ -1,0 +1,25 @@
+<h1>{{ Title }}</h1>
+<div class="input-div">
+    <mat-form-field>
+        <mat-label>firstname</mat-label>
+        <input matInput [(ngModel)]="firstname">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>lastname</mat-label>
+        <input matInput [(ngModel)]="lastname">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>gIds</mat-label>
+        <input matInput [(ngModel)]="gId">
+    </mat-form-field>
+    <ng-container *ngIf="newUser">
+        <mat-form-field>
+            <mat-label>password</mat-label>
+            <input matInput [(ngModel)]="password">
+        </mat-form-field>
+    </ng-container>
+    <mat-checkbox [(ngModel)]="wireguard" (ngModelChange)="setWireguard()">Wireguard</mat-checkbox>
+</div>
+<div class="button-div">
+<button mat-raised-button color="primary" class="apply-button" (click)="applyChanges()">{{ buttonTitle }}</button>
+</div>

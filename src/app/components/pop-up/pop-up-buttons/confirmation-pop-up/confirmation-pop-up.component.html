@@ -1,0 +1,8 @@
+<h1 mat-dialog-title align="center">Deploy VM</h1>
+<div mat-dialog-content>
+    {{ data.description }}
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button cdkFocusInitial [color]="buttonColor" (click)="OnClickDeploy()">{{ buttonTitle }}</button>
+</mat-dialog-actions>

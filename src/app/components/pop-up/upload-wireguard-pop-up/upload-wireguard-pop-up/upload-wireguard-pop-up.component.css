@@ -1,0 +1,48 @@
+h1 {
+    margin-top: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.input-field{
+    width: 200px;
+}
+mat-form-field{
+    width: 100%;
+}
+mat-input{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+    height: 40px;
+    flex-direction: row;
+}
+.content{
+    margin: 10px;
+}
+.key{
+    width: 200px;
+    align-items: center;
+    display: flex;
+}
+.row{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+mat-error{
+    margin-bottom: 10px;
+}
+.button-div{
+    margin: 10px 0px 10px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.margin-right{
+    margin-right: 10px;
+}

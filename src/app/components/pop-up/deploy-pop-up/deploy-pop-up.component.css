@@ -1,0 +1,16 @@
+.center-titel {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 40px;
+}
+
+mat-divider {
+    margin-bottom: 20px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

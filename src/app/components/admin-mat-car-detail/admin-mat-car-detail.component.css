@@ -1,0 +1,19 @@
+.card {
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: center;
+}
+button {
+    margin-top: 15px;
+} 
+
+.horizontal {
+    display: flex;
+    gap: 20px;
+}
+
+mat-card-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

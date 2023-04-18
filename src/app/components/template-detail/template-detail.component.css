@@ -1,0 +1,18 @@
+mat-expansion-panel {
+    margin: 20px;
+}
+
+.center-alligned {
+    display: flex;
+    align-items: center;
+
+}
+
+.disable-click {
+    pointer-events: none;
+}
+
+mat-icon {
+    margin-right: 5px;
+    margin-left: 15px;
+}

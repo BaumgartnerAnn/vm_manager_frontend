@@ -1,0 +1,64 @@
+.toolbar-item-spacer {
+    flex: 1 1 auto;
+}
+.app-container {
+    height: 10%;
+    margin: 0;
+}  
+.app-sidenav {
+    width: 160px;
+}
+
+mat-toolbar {
+    height: 64px;
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+mat-sidenav {
+    position: fixed;
+    top: 64px; /* Set the top position to the height of the mat-toolbar */
+    bottom: 0; /* Set the bottom position to 0 to fill the remaining height */
+}
+.menu {
+    transform: scale(1.5);
+    font-size: large;
+    padding: 10px;
+}
+li{
+    list-style-type: none;
+    display: flex;
+}
+mat-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+a{
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0px 30px 0px;
+    margin: 5px
+}
+a:hover{
+    color: white;
+    background-color: #3f51b5;
+}
+.menu-link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.active{
+    background-color: #d5d5d5;
+}
+.container {
+    position: relative;
+    height: 100%;
+    overflow: auto; /* enable scrolling for container */
+}

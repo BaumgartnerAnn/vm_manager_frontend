@@ -1,0 +1,69 @@
+ /* handle Chrome (arrows (to lower or increase the number) always shown) */
+ @supports (-webkit-appearance:none) {
+
+     input[type=number]::-webkit-inner-spin-button,
+     input[type=number]::-webkit-outer-spin-button {
+         opacity: 1;
+     }
+ }
+
+
+ mat-slider {
+     white-space: nowrap;
+     width: 250px;
+ }
+
+ mat-form-field {
+     margin-top: 9px;
+     width: 150px;
+     height: 70px;
+ }
+
+ .slider-container {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin-right: 15px;
+ }
+
+ .center {
+     margin: auto;
+     white-space: nowrap;
+ }
+
+ /* The following code adds the Suffix to the Input filed*/
+ /* We don't take the inbuild Suffix funciton, because this would display the Suffix after the arrows */
+ /* prepare wrapper element */
+ div {
+     position: relative;
+ }
+
+ /* position the unit to the right of the wrapper */
+ div::after {
+     position: absolute;
+     top: 2px;
+     right: .5em;
+     transition: all .05s ease-in-out;
+     right: 1.5em;
+ }
+
+ /* move unit more to the left on hover or focus within
+      for arrow buttons will appear to the right of number inputs */
+ div:hover::after,
+ div:focus-within::after {
+     right: 1.5em;
+ }
+
+
+ /* set the unit abbreviation for each unit class */
+ .RAM::after {
+     content: 'MB';
+ }
+
+ .Cores::after {
+     content: 'CPUs';
+ }
+
+ .Storage::after {
+     content: 'GB';
+ }

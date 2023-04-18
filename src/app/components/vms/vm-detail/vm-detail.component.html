@@ -1,0 +1,55 @@
+<div class="content-wrapper" *ngIf="vm; else elseblock">
+    <mat-expansion-panel (opened)="onPanelOpen(vm)">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <span class="vm-name">{{ vm.properties.get('name')?.value }}</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="details-wrapper" *ngIf="vm; else elseblock">
+            <mat-chip-set class="example-chip">
+                <ng-container *ngFor="let property of vm.shownProperties| keyvalue">
+                    <ng-container *ngIf="property != null && property.value.displayed">
+                        <mat-chip class="center_alligned disable-click" >
+                            <span>{{ property.key + ": " + property.value.displayValue }}</span>
+                        </mat-chip>
+                    </ng-container>
+                </ng-container>
+            </mat-chip-set>
+        </div>
+        <mat-action-row>
+            <button mat-raised-button color="{{ 'warn' }}" (click)="onDeleteClick(vm)">
+                <mat-icon fontIcon="delete"></mat-icon>
+                {{ 'Delete from my system' }}
+            </button>
+            <button mat-raised-button color="primary" (click)="onSnapshotclick(vm)"
+                [disabled]="vm.properties.get('Status')?.value !== 'running'">
+                <mat-icon fontIcon="camera"></mat-icon>
+                {{ 'See Snapshots' }}
+            </button>
+            <button mat-raised-button color="primary" (click)="onCloneClick(vm)">
+                <mat-icon fontIcon="content_copy"></mat-icon>
+                {{ 'Clone VM' }}
+            </button>
+            <button mat-raised-button color="primary" (click)="onRebootClick(vm)">
+                <mat-icon fontIcon="replay"></mat-icon>
+                {{ 'Reboot VM' }}
+            </button>
+            <button mat-raised-button color="{{ isStopPending.value ? 'warn' : 'primary' }}"
+                (click)="isStopPending.value ? onKillClick(vm) : (vm.properties.get('Status')?.value === 'running' ? onStopClick(vm) : onStartClick(vm))">
+                <mat-icon>{{ isStopPending.value ? 'close' : (vm.properties.get('Status')?.value === 'running' ? 'stop':
+                    'play_arrow') }}</mat-icon>
+                {{ isStopPending.value ? 'Kill VM' :
+                (vm.properties.get('Status')?.value === 'running' ? 'Stop VM' : 'Start VM') }}
+            </button>
+            <button mat-raised-button color="primary" (click)="onConnectClick(vm)" [disabled]="vm.properties.get('Status')?.value !== 'running'">
+                <mat-icon fontIcon="open_in_new"></mat-icon>
+                {{ 'Connect to VM' }}
+            </button>
+
+        </mat-action-row>
+    </mat-expansion-panel>
+</div>
+
+<ng-template #elseblock>
+    <p>OOps Something went wrong</p>
+</ng-template>

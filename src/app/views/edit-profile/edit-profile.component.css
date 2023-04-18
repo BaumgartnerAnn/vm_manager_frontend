@@ -1,0 +1,55 @@
+mat-card{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+    height: 40px;
+    flex-direction: row;
+}
+.content{
+    margin: 10px;
+}
+.small-card{
+    margin-left: 20px;
+    width: calc(100% - 310px);
+    float: right;
+}
+.key{
+    align-items: center;
+    display: flex;
+}
+.row{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    width: calc(100% - 20px);
+    justify-content: space-between;
+}
+.clickable{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
+}
+.clickable:hover{
+    background-color: whitesmoke;
+}
+.card-text {
+    flex-grow: 1;
+    text-align: left;
+    font-size: xx-large;
+}
+mat-icon{
+    margin-left: 10px;
+}
+.button-div{
+    display: flex;
+}
+.wiregurad-button{
+    margin-right: 10px;
+    margin-left: auto;
+}

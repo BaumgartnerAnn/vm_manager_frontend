@@ -1,0 +1,13 @@
+.button-row {
+    margin-right: 10px;
+    width: 530px;
+    display: flex;
+    align-items: right;
+    justify-content: space-between;
+}
+
+.button-container {
+    display: flex;
+    align-items: right;
+    justify-content: flex-end;
+}

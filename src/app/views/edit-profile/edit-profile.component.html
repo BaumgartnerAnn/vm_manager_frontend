@@ -1,0 +1,45 @@
+<div class="content">
+    <div class="row">
+        <div class="key">
+            First Name
+        </div>
+        <mat-card class="small-card">
+            {{ users[0].properties.get('firstname')?.value }}
+        </mat-card>
+    </div>
+    <div class="row">
+        <div class="key">
+            Last Name
+        </div>
+        <mat-card class="small-card">
+            {{ users[0].properties.get('lastname')?.value }}
+        </mat-card>
+    </div>
+    <div class="row">
+        <div class="key">
+        Username 
+        </div>
+        <mat-card class="small-card">
+            {{ users[0].properties.get('uId')?.value }}
+        </mat-card>
+    </div>
+    <div class="row">
+        <div class="key" type="password">
+            Password
+        </div>
+        <mat-card (click)="changePassword()" class="small-card clickable">
+            <div class="card-text">
+                ••••••••••
+            </div>
+            <mat-icon>
+               edit 
+            </mat-icon>
+        </mat-card>
+    </div>
+    <div *ngIf="users[0].properties.get('wireguard')?.value" class="button-div">
+        <button mat-raised-button color="primary" class="wiregurad-button" (click)="uploadWireguard()">
+            upload wireguard key
+        </button>
+    </div>
+</div>
+<div style="width: 100%; height: 100px;"></div>

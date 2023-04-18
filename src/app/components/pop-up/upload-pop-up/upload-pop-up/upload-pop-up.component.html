@@ -1,0 +1,23 @@
+<h1>CSV File Upload</h1>
+<div class="text-div">
+    <form [formGroup]="loginForm" #formDirective="ngForm">
+       <mat-form-field>
+            <mat-label>Class id</mat-label>
+            <input type="text" matInput formControlName="classId" placeholder="[YY][RS][Class]">
+            <mat-error *ngIf="loginForm.get('classId')?.hasError('required')">
+                Class id is required
+            </mat-error>
+        </mat-form-field>
+        <mat-checkbox [checked]="wireguard">Wireguard</mat-checkbox>
+    </form>
+</div>
+<div class="buttons-div"> 
+    <input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="onFileSelected($event)" accept=".csv"/>
+    <ng-container *ngIf="fileIsSelected; else elseBlock">
+        <button class="buttons" mat-flat-button color="primary" (click)="csvInput.click()">File selected: {{ fileToUpload?.name }}</button>
+    </ng-container>
+    <ng-template #elseBlock>
+        <button class="buttons" mat-flat-button color="primary" (click)="csvInput.click()">Choose User File (CSV)</button>
+    </ng-template>
+    <button class="buttons" mat-flat-button color="primary" [disabled]="!fileIsSelected || loginForm.invalid" (click)="onUploadFile()">Upload</button>
+</div>
