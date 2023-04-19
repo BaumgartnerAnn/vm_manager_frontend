@@ -52,25 +52,23 @@ export class LdapCardComponent {
     deleteDialog.afterClosed().subscribe(result => {
       if (result) {
         this.dataSource = this.dataSource.filter((user) => user !== element);
-        this.responseService.postRequest('admin/delete_user', { "uId": element.properties.get('uId')?.value }).subscribe((data) => {
-          console.log(data);
-        });
+        this.responseService.postRequest('admin/delete_user', { "uId": element.properties.get('uId')?.value }).subscribe(() => {});
       }
     });
   }
   editUser(element: LdapEditProfileUser) {
     this.dialog.open(EditUserComponent, {
-      data: { user: element, newUser: false }
+      data: { user: element, isNewUser: false }
     })
   }
   createUser(){
     const createUserPopUp = this.dialog.open(EditUserComponent, {
-      data: { user: LdapEditProfileUser.createEmptyUser(), newUser: true, dataSource: this.dataSource}
+      data: { user: LdapEditProfileUser.createEmptyUser(), isNewUser: true, dataSource: this.dataSource}
     })
     createUserPopUp.afterClosed().subscribe(newUser => {
       if (newUser != undefined){
-      this.dataSource.push(newUser);
-      console.log(this.dataSource)
+      this.dataSource = [...this.dataSource, newUser[0]];
+      this.dataSource = this.dataSource.slice();
       }
     });
   }

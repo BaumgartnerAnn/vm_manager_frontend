@@ -8,28 +8,43 @@
         <mat-label>lastname</mat-label>
         <input matInput [(ngModel)]="lastname">
     </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Choose the user type</mat-label>
-        <mat-select (selectionChange)="changeTypeOfUser($event.value)">
-            <ng-container *ngFor="let option of typeOfUsers">
-                <mat-option [value]="option">{{ option }}</mat-option>
-            </ng-container>
-        </mat-select>
-    </mat-form-field>
-    <ng-container *ngIf="typeOfUser === 'saiber' || typeOfUser === 'loefti'">
+    <ng-container *ngIf="isNewUser">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose the user type</mat-label>
+            <mat-select [(value)]="typeOfUser" (selectionChange)="changeTypeOfUser($event.value)">
+                <ng-container *ngFor="let option of typeOfUsers">
+                    <mat-option [value]="option">{{ option }}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+    </ng-container>
+    <ng-container *ngIf="(typeOfUser === 'cyber' || typeOfUser === 'lieutenant') && isNewUser">
         <mat-form-field>
             <mat-label>Class Id</mat-label>
             <input matInput [(ngModel)]="classId">
         </mat-form-field>
     </ng-container>
-    <ng-container *ngIf="newUser">
-        <mat-form-field>
-            <mat-label>password</mat-label>
-            <input matInput type="password" [(ngModel)]="password">
-        </mat-form-field>
+    <ng-container *ngIf="isNewUser">
+        <form [formGroup]="adminForm">
+            <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+                <input [type]="hidden['newPassword'] ? 'password' : 'text'" matInput formControlName="newPassword">
+                <mat-error *ngIf="adminForm.hasError('required', 'newPassword')">
+                    Enter your new Password
+                </mat-error>
+                <mat-error *ngIf="adminForm.hasError('minlength', 'newPassword')">
+                    Min Password length is 8
+                </mat-error>
+                <mat-icon matSuffix (click)="changePasswordVisibility('newPassword')" class="password-icon">
+                    {{hidden['newPassword'] ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </mat-form-field>
+        </form>
     </ng-container>
     <mat-checkbox [(ngModel)]="wireguard" (ngModelChange)="setWireguard()">Wireguard</mat-checkbox>
 </div>
 <div class="button-div">
-    <button mat-raised-button color="primary" class="apply-button" (click)="applyChanges()">{{ buttonTitle }}</button>
+    <button mat-raised-button color="primary" class="apply-button" 
+    [disabled]="firstname==='' || lastname==='' || ((typeOfUser==='' || adminForm.hasError('minlength', 'newPassword') || adminForm.hasError('required', 'newPassword') || ((typeOfUser==='cyber' || typeOfUser==='lieutenant') && classId==='')) && isNewUser)" 
+    (click)="applyChanges()">{{ buttonTitle }}</button>
 </div>

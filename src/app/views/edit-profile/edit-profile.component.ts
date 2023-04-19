@@ -23,12 +23,13 @@ export class EditProfileComponent {
     this.users[0] = LdapEditProfileUser.createEmptyUser();
     this.fetchService.getData<LdapEditProfileUser>('handle_user/user_info', 'LdapEditProfileUser').subscribe((users: LdapEditProfileUser[]) => {
       this.users = users
+      console.log(this.users)
     });
   }
   changePassword() {
     this.dialog.open(ChangePasswordPopUpComponent, {});
   }
   uploadWireguard() {
-    this.dialog.open(UploadWireguardPopUpComponent)
+    this.dialog.open(UploadWireguardPopUpComponent, {width: '760px'})
   }
 }

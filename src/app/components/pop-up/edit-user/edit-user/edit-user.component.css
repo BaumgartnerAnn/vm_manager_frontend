@@ -8,12 +8,19 @@ h1{
 }
 .input-div{
     margin: 10px;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
 }
 mat-form-field{
     margin: 5px;
+    width: 150px;
 }
 .button-div{
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+form {
+    width: auto;
 }

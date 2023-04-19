@@ -43,9 +43,12 @@
             </button>
             <button mat-raised-button color="primary" (click)="onConnectClick(vm)" [disabled]="vm.properties.get('Status')?.value !== 'running'">
                 <mat-icon fontIcon="open_in_new"></mat-icon>
-                {{ 'Connect to VM' }}
+                {{ 'Get Wireguard config' }}
             </button>
-
+            <button mat-raised-button color="primary" (click)="activateGuacamole(vm)" [disabled]="vm.properties.get('Status')?.value !== 'running'">
+                <mat-icon fontIcon="toggle_on"></mat-icon>
+                {{ 'Activate Guacamole' }}
+            </button>
         </mat-action-row>
     </mat-expansion-panel>
 </div>

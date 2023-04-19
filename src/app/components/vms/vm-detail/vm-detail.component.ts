@@ -116,7 +116,7 @@ export class VmDetailComponent {
   }
 
   onConnectClick(vm: VM) {
-    this.responseService.postRequest('handle_vm/connect', { vmid: vm.properties.get('VM ID')?.value }).subscribe((response: any) => {
+    this.responseService.postRequest('handle_vm/connect_wireguard', { vmid: vm.properties.get('VM ID')?.value }).subscribe((response: any) => {
         this.SPICE_token = response.SPICE_token;
         // download the SPICE token
         const data = new Blob([this.SPICE_token], { type: 'text/plain' });
@@ -128,6 +128,11 @@ export class VmDetailComponent {
         link.click();
         document.body.removeChild(link);
         URL.revokeObjectURL(url);        
+    });
+  }
+  activateGuacamole(vm: VM){
+    this.responseService.patchRequest('handle_vm/activate_guacamole', { vmid: vm.properties.get('VM ID')?.value }).subscribe((response: any) => {
+      console.log(response);
     });
   }
 }

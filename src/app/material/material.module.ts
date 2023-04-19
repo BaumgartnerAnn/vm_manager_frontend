@@ -15,7 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { MatTableModule } from '@angular/material/table';
-import {MatSortModule} from '@angular/material/sort'; 
+import { MatSortModule } from '@angular/material/sort'; 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const components = [
   MatButtonModule,
@@ -34,6 +35,7 @@ const components = [
   CdkVirtualScrollViewport,
   MatTableModule,
   MatSortModule,
+  MatSnackBarModule
 ];
 
 

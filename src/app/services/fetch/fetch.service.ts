@@ -26,8 +26,8 @@ export class FetchService {
             data = response.map((proxmoxUser: any) => new ProxmoxUser(proxmoxUser.Username, this.displayService, proxmoxUser.storage_used, proxmoxUser.running_vms, proxmoxUser.total_vms, proxmoxUser.RAM_used, proxmoxUser.CPU_used));
           } else if (type_of_data === 'LdapEditProfileUser') {
             // LdapEditProfileUser are for the Ldap-card component, for editing the profile and are for the user handling in the admin panel.
-            console.log(response)
             data = response.map((ldapEditProfileUser: any) => new LdapEditProfileUser(ldapEditProfileUser.givenName, ldapEditProfileUser.sn, ldapEditProfileUser.uid, this.displayService, ldapEditProfileUser.type_of_user, ldapEditProfileUser.wireguard));
+            console.log(response)
             return data;
           } else if (type_of_data === 'VM') {
             data = response.map((vm: any) => new VM(vm.name, vm.vmid, this.displayService, vm.node_name));
