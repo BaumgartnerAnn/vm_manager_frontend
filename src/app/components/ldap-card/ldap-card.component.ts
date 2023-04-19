@@ -20,7 +20,7 @@ export class LdapCardComponent {
     'firstname',
     'lastname',
     'uId',
-    'gIds',
+    'typeOfUser',
     ' ', //this is for the icons to modify a user
   ];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
@@ -63,10 +63,16 @@ export class LdapCardComponent {
       data: { user: element, newUser: false }
     })
   }
-  openNewUserPopUp(){
-    this.dialog.open(EditUserComponent, {
+  createUser(){
+    const createUserPopUp = this.dialog.open(EditUserComponent, {
       data: { user: LdapEditProfileUser.createEmptyUser(), newUser: true, dataSource: this.dataSource}
     })
+    createUserPopUp.afterClosed().subscribe(newUser => {
+      if (newUser != undefined){
+      this.dataSource.push(newUser);
+      console.log(this.dataSource)
+      }
+    });
   }
   changePassword(element: LdapEditProfileUser) {
     this.dialog.open(ChangePasswordPopUpComponent, {

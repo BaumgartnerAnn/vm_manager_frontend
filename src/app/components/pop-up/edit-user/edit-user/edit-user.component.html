@@ -8,18 +8,28 @@
         <mat-label>lastname</mat-label>
         <input matInput [(ngModel)]="lastname">
     </mat-form-field>
-    <mat-form-field>
-        <mat-label>gIds</mat-label>
-        <input matInput [(ngModel)]="gId">
+    <mat-form-field appearance="fill">
+        <mat-label>Choose the user type</mat-label>
+        <mat-select (selectionChange)="changeTypeOfUser($event.value)">
+            <ng-container *ngFor="let option of typeOfUsers">
+                <mat-option [value]="option">{{ option }}</mat-option>
+            </ng-container>
+        </mat-select>
     </mat-form-field>
+    <ng-container *ngIf="typeOfUser === 'saiber' || typeOfUser === 'loefti'">
+        <mat-form-field>
+            <mat-label>Class Id</mat-label>
+            <input matInput [(ngModel)]="classId">
+        </mat-form-field>
+    </ng-container>
     <ng-container *ngIf="newUser">
         <mat-form-field>
             <mat-label>password</mat-label>
-            <input matInput [(ngModel)]="password">
+            <input matInput type="password" [(ngModel)]="password">
         </mat-form-field>
     </ng-container>
     <mat-checkbox [(ngModel)]="wireguard" (ngModelChange)="setWireguard()">Wireguard</mat-checkbox>
 </div>
 <div class="button-div">
-<button mat-raised-button color="primary" class="apply-button" (click)="applyChanges()">{{ buttonTitle }}</button>
+    <button mat-raised-button color="primary" class="apply-button" (click)="applyChanges()">{{ buttonTitle }}</button>
 </div>

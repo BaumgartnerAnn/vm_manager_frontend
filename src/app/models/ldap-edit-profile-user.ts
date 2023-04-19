@@ -11,17 +11,17 @@ export class LdapEditProfileUser {
     lastname: string,
     uId: number | string | null, //only null for new users
     displayService: DisplayService,
-    gIds: number | null = null,
+    typeOfUser: string = '', //types are saiber, loefti, dozent, admin
     wireguard: boolean = false
     ) {
     this.properties.set("firstname", new Property(firstname, displayService));
     this.properties.set("lastname", new Property(lastname, displayService));
     this.properties.set("uId", new Property(uId, displayService));
-    this.properties.set("gIds", new Property(gIds, displayService));
+    this.properties.set("typeOfUser", new Property(typeOfUser, displayService));
     this.properties.set("wireguard", new Property(wireguard, displayService));
     this.loaded = false;
   }
     static createEmptyUser(): LdapEditProfileUser {
-    return new LdapEditProfileUser("", "", "", new DisplayService(), null, false);
+    return new LdapEditProfileUser("", "", "", new DisplayService(), '', false);
   }
 }
