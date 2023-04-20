@@ -35,12 +35,13 @@ import { SideBarComponent } from './components/sidenav-toolbar/sidenav-toolbar.c
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { LdapCardComponent } from './components/ldap-card/ldap-card.component';
-import { UploadPopUpComponent } from './components/pop-up/upload-pop-up/upload-pop-up/upload-pop-up.component';
-import { SnapshotPopUpComponent } from './components/pop-up/snapshot-pop-up/snapshot-pop-up/snapshot-pop-up.component';
+import { UploadSshKeyPopUpComponent } from './components/pop-up/upload-ssh-key-pop-up/upload-ssh-key-pop-up.component';
+import { UploadPopUpComponent } from './components/pop-up/upload-pop-up/upload-pop-up.component';
+import { SnapshotPopUpComponent } from './components/pop-up/snapshot-pop-up/snapshot-pop-up.component';
 import { EditProfileComponent } from './views/edit-profile/edit-profile.component';
 import { ChangePasswordPopUpComponent } from './components/pop-up/change-password-pop-up/change-password-pop-up.component';
-import { UploadWireguardPopUpComponent } from './components/pop-up/upload-wireguard-pop-up/upload-wireguard-pop-up/upload-wireguard-pop-up.component';
 import { EditUserComponent } from './components/pop-up/edit-user/edit-user/edit-user.component';
+import { ActionOnClassComponent } from './components/pop-up/action-on-class/action-on-class.component';
 
 @NgModule({
   declarations: [
@@ -70,8 +71,9 @@ import { EditUserComponent } from './components/pop-up/edit-user/edit-user/edit-
     SnapshotPopUpComponent,
     EditProfileComponent,
     ChangePasswordPopUpComponent,
-    UploadWireguardPopUpComponent,
+    UploadSshKeyPopUpComponent,
     EditUserComponent,
+    ActionOnClassComponent,
   ],
   imports: [
     CommonModule,

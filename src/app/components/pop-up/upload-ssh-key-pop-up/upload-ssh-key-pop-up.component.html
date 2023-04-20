@@ -1,4 +1,4 @@
-<h1>Wireguard configuration</h1>
+<h1>{{ title }}</h1>
 <div class="content">
     <div class="row">
         <div class="key">
@@ -10,7 +10,7 @@
             </mat-form-field>
         </form>              
     </div>
-    <div class="row">
+    <div class="row" *ngIf="!openAsShareKey">
         <div class="key">
             Privat key
         </div>
@@ -25,7 +25,7 @@
     </div>
     <div class="button-div">
         <button mat-raised-button color="primary" [disabled]="publicKey === '' && privatKey !== ''" (click)="getWireguradConfig()">
-            get Wireguard config
+        {{ buttonTitle }}
         </button>
     </div>
 </div>

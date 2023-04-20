@@ -64,8 +64,7 @@ export class ChangePasswordPopUpComponent {
   }
   changePassword() {
     if (this.openedAsAdmin) {
-      this.responseService.patchRequest('admin/change_password', { ...this.adminForm.value, "uId": this.uId }).subscribe((response: any) => {
-        console.log(response);
+      this.responseService.patchRequest('admin/change_password', { ...this.adminForm.value, "uId": this.uId }).subscribe(() => {
         this.dialogRef.close();
       });
     }

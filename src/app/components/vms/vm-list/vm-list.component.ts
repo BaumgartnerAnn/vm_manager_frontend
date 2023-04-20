@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { VM } from 'app/models/vm';
+import { LdapEditProfileUser } from 'app/models/ldap-edit-profile-user';
 
 @Component({
   selector: 'app-vm-list',
@@ -7,10 +8,7 @@ import { VM } from 'app/models/vm';
   styleUrls: ['./vm-list.component.css']
 })
 export class VmListComponent {
-  @Input() vms: VM[]=[];
-  @Output() selectVm = new EventEmitter<VM>();
-
-  selectedVM: VM[] = []; // set initial selected VM array to empty
-
+  @Input() vms: VM[] = [];
+  @Input() user: LdapEditProfileUser = LdapEditProfileUser.createEmptyUser();
 }
 

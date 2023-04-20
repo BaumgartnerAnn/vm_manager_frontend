@@ -11,6 +11,7 @@ export class ConfirmationPopUpComponent {
     public dialogRef: MatDialogRef<ConfirmationPopUpComponent>,
     @Inject(MAT_DIALOG_DATA) public data?: any
   ) { }
+  title: string = "Deploy Vm";
   buttonTitle: string = "Deploy";
   buttonColor: string = "primary";
   // If there is a button Tilte in the data, we set it to the buttonTitle
@@ -20,6 +21,9 @@ export class ConfirmationPopUpComponent {
     }
     if (this.data.buttonColor) {
       this.buttonColor = this.data.buttonColor;
+    }
+    if (this.data.title) {
+      this.title = this.data.title;
     }
   }
 

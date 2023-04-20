@@ -4,8 +4,9 @@ import { ResponseService } from 'app/services/response/response.service';
 import { CheckStatusService } from 'app/services/check-status/check-status.service';
 import { ConfirmationPopUpComponent } from '../../pop-up/pop-up-buttons/confirmation-pop-up/confirmation-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
-import { SnapshotPopUpComponent } from '../../pop-up/snapshot-pop-up/snapshot-pop-up/snapshot-pop-up.component';
+import { SnapshotPopUpComponent } from 'app/components/pop-up/snapshot-pop-up/snapshot-pop-up.component';
 import { HttpParams } from '@angular/common/http';
+import { LdapEditProfileUser } from 'app/models/ldap-edit-profile-user';
 
 @Component({
   selector: 'app-vm-detail',
@@ -16,6 +17,7 @@ import { HttpParams } from '@angular/common/http';
 export class VmDetailComponent {
   @Input() vm?: VM;
   @Input() vms?: VM[];
+  @Input() user!: LdapEditProfileUser;
   response: any = {};
   isStopPending: any = { value: false };
   SPICE_token: any = '';
@@ -32,6 +34,7 @@ export class VmDetailComponent {
             vm.properties.get('Max RAM')?.setValue(response.maxmem);
             vm.properties.get('OS')?.setValue(response.ostype);
             vm.properties.get('Status')?.setValue(response.status);
+            vm.properties.get('hasGuac')?.setValue(response.has_guacamole);
             vm.loaded = true;
         });
       
@@ -116,7 +119,7 @@ export class VmDetailComponent {
   }
 
   onConnectClick(vm: VM) {
-    this.responseService.postRequest('handle_vm/connect_wireguard', { vmid: vm.properties.get('VM ID')?.value }).subscribe((response: any) => {
+    this.responseService.postRequest('handle_vm/get_spice_token', { vmid: vm.properties.get('VM ID')?.value }).subscribe((response: any) => {
         this.SPICE_token = response.SPICE_token;
         // download the SPICE token
         const data = new Blob([this.SPICE_token], { type: 'text/plain' });
@@ -131,9 +134,10 @@ export class VmDetailComponent {
     });
   }
   activateGuacamole(vm: VM){
-    this.responseService.patchRequest('handle_vm/activate_guacamole', { vmid: vm.properties.get('VM ID')?.value }).subscribe((response: any) => {
-      console.log(response);
-    });
+    this.responseService.patchRequest('handle_vm/activate_guacamole', { vmid: vm.properties.get('VM ID')?.value }).subscribe(() => {});
+  }
+  deactivateGuacamole(vm: VM){
+    this.responseService.patchRequest('handle_vm/deactivate_guacamole', { vmid: vm.properties.get('VM ID')?.value }).subscribe(() => {});
   }
 }
 

@@ -9,7 +9,7 @@
             <mat-chip-set class="example-chip">
                 <ng-container *ngFor="let property of vm.shownProperties| keyvalue">
                     <ng-container *ngIf="property != null && property.value.displayed">
-                        <mat-chip class="center_alligned disable-click" >
+                        <mat-chip class="center_alligned disable-click">
                             <span>{{ property.key + ": " + property.value.displayValue }}</span>
                         </mat-chip>
                     </ng-container>
@@ -41,14 +41,25 @@
                 {{ isStopPending.value ? 'Kill VM' :
                 (vm.properties.get('Status')?.value === 'running' ? 'Stop VM' : 'Start VM') }}
             </button>
-            <button mat-raised-button color="primary" (click)="onConnectClick(vm)" [disabled]="vm.properties.get('Status')?.value !== 'running'">
+            <button mat-raised-button color="primary" (click)="onConnectClick(vm)"
+                [disabled]="vm.properties.get('Status')?.value !== 'running'">
                 <mat-icon fontIcon="open_in_new"></mat-icon>
-                {{ 'Get Wireguard config' }}
+                {{ 'Get Spice Token' }}
             </button>
-            <button mat-raised-button color="primary" (click)="activateGuacamole(vm)" [disabled]="vm.properties.get('Status')?.value !== 'running'">
-                <mat-icon fontIcon="toggle_on"></mat-icon>
-                {{ 'Activate Guacamole' }}
-            </button>
+            <ng-container
+                *ngIf="vm.properties.get('hasGuac')?.value && user.properties?.get('wireguard')?.value===true">
+                <button mat-raised-button color="primary" (click)="deactivateGuacamole(vm)">
+                    <mat-icon fontIcon="toggle_off"></mat-icon>
+                    {{ 'Deactivate Guacamole' }}
+                </button>
+            </ng-container>
+            <ng-container
+                *ngIf="!vm.properties.get('hasGuac')?.value && user.properties?.get('wireguard')?.value===true">
+                <button mat-raised-button color="primary" (click)="activateGuacamole(vm)">
+                    <mat-icon fontIcon="toggle_on"></mat-icon>
+                    {{ 'Activate Guacamole' }}
+                </button>
+            </ng-container>
         </mat-action-row>
     </mat-expansion-panel>
 </div>

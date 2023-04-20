@@ -4,7 +4,7 @@ import { ChangePasswordPopUpComponent } from 'app/components/pop-up/change-passw
 import { FetchService } from 'app/services/fetch/fetch.service';
 import { LdapEditProfileUser } from 'app/models/ldap-edit-profile-user';
 import { DisplayService } from 'app/services/display/display.service';
-import { UploadWireguardPopUpComponent } from 'app/components/pop-up/upload-wireguard-pop-up/upload-wireguard-pop-up/upload-wireguard-pop-up.component';
+import { UploadSshKeyPopUpComponent } from 'app/components/pop-up/upload-ssh-key-pop-up/upload-ssh-key-pop-up.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -17,7 +17,7 @@ export class EditProfileComponent {
     private displayService: DisplayService,
     private dialog: MatDialog) { }
   users: LdapEditProfileUser[] = [];
-  
+
   ngOnInit(): void {
     // first create a default user, so that the page doesn't display errors till the fetch service returns the user
     this.users[0] = LdapEditProfileUser.createEmptyUser();
@@ -30,6 +30,9 @@ export class EditProfileComponent {
     this.dialog.open(ChangePasswordPopUpComponent, {});
   }
   uploadWireguard() {
-    this.dialog.open(UploadWireguardPopUpComponent, {width: '760px'})
+    this.dialog.open(UploadSshKeyPopUpComponent, { width: '760px' })
+  }
+  uploadShareKey(){
+    this.dialog.open(UploadSshKeyPopUpComponent, { width: '760px', data: { openAsShareKey: true } })
   }
 }

@@ -1,27 +1,19 @@
 h1 {
     text-align: center;
 }
-.class-id{
-    width: 100px;
-}
 .buttons{
     margin: 5px;
 }
 .buttons-div{
     margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: -10px;
 }
 .text-div{
     justify-content: center;
     align-items: center;
     display: flex;
-    margin: 5px;
-}
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
-  width: 100%;
+    margin: 10px;
 }

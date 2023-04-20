@@ -1,0 +1,15 @@
+<h1>{{ title }}</h1>
+<div class="text-div">
+    <form [formGroup]="inputForm" #formDirective="ngForm">
+       <mat-form-field>
+            <mat-label>Class id</mat-label>
+            <input type="text" matInput formControlName="classId" placeholder="[YY][RS][Class]">
+            <mat-error *ngIf="inputForm.get('classId')?.hasError('required')">
+                Class id is required
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+<div class="buttons-div"> 
+    <button class="buttons" mat-flat-button color="primary" [disabled]="inputForm.invalid" (click)="actionOnClass()">{{ buttonTitle }}</button>
+</div>

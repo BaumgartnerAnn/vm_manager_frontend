@@ -15,7 +15,8 @@ export class VM {
         maxdisk: number = 0,
         maxmem: number = 0,
         ostype: string = "",
-        status: string = "") {
+        status: string = "",
+        hasGuac: boolean = false) {
             
         this.properties.set("name", new Property(name, displayService));
         this.properties.set("CPU available", new Property(cpus, displayService));
@@ -25,6 +26,7 @@ export class VM {
         this.properties.set("Status", new Property(status, displayService));
         this.properties.set("VM ID", new Property(vmid, displayService, false, false));
         this.properties.set("Node name", new Property(node_name, displayService, false, false));
+        this.properties.set("hasGuac", new Property(hasGuac, displayService, false, false));
 
         this.showDetails = false;
         this.loaded = false;

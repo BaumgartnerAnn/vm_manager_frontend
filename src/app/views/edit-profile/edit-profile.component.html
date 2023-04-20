@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="key">
-        Username 
+            Username
         </div>
         <mat-card class="small-card">
             {{ users[0].properties.get('uId')?.value }}
@@ -32,14 +32,19 @@
                 ••••••••••
             </div>
             <mat-icon>
-               edit 
+                edit
             </mat-icon>
         </mat-card>
     </div>
-    <div *ngIf="users[0].properties.get('wireguard')?.value" class="button-div">
-        <button mat-raised-button color="primary" class="wiregurad-button" (click)="uploadWireguard()">
-            upload wireguard key
+    <div class="button-div">
+        <button mat-raised-button color="primary" class="margin-right" (click)="uploadShareKey()">
+            upload share key
         </button>
+        <div *ngIf="users[0].properties.get('wireguard')?.value">
+            <button mat-raised-button color="primary" class="margin-right" (click)="uploadWireguard()">
+                upload wireguard key
+            </button>
+        </div>
     </div>
 </div>
 <div style="width: 100%; height: 100px;"></div>

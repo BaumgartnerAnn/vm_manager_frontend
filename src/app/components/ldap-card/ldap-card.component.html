@@ -5,7 +5,7 @@
     <mat-card-content>
   <table mat-table matSort (matSortChange)="sortData($event)" [dataSource]="dataSource">
     <ng-container [matColumnDef]="column" *ngFor="let column of columnsToDisplay">
-      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="column"> {{column}} </th>
+      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="column"> {{tableColumnName(column)}} </th>
       <tr>
       <td mat-cell *matCellDef="let element">
         <ng-container *ngFor="let property of element | keyvalue">
@@ -13,9 +13,10 @@
             {{element.properties.get(column).value}}
           </ng-container>
           <ng-container *ngIf="property.value != null && property.value && column === ' '">
+            <button mat-icon-button [disabled]="element.properties.get('typeOfUser')?.value==='archived'" (click)="archiveUser(element)"><mat-icon>archive</mat-icon></button>
             <button mat-icon-button (click)="deleteUser(element)"><mat-icon>delete</mat-icon></button>
             <button mat-icon-button (click)="editUser(element)"><mat-icon>edit</mat-icon></button>
-            <button mat-icon-button (click)="changePassword(element)"><mat-icon>lock</mat-icon></button>
+            <button mat-icon-button (click)="changePassword(element)"><mat-icon>lock_reset</mat-icon></button>
           </ng-container>
         </ng-container>
       </td>
@@ -28,7 +29,9 @@
     <mat-divider></mat-divider>
         <div class="button-div">
             <button mat-raised-button color="primary" class="margin-right" (click)="createUser()">New user</button>
-            <button mat-raised-button color="primary" (click)="onfileUploadPopUp()">Upload File</button>
+            <button mat-raised-button color="primary" class="margin-right" (click)="onfileUploadPopUp()">Upload File</button>
+            <button mat-raised-button color="primary" class="margin-right" (click)="archiveClass()">Archive Class</button>
+            <button mat-raised-button color="primary" (click)="deleteClass()">Delete Class</button>
       </div>
     </mat-card-content>
 </div>

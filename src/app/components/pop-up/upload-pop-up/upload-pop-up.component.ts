@@ -14,7 +14,7 @@ export class UploadPopUpComponent {
   fileIsSelected = false;
   wireguard: boolean = true;
   loginForm = new FormGroup({
-    classId: new FormControl('', Validators.required),
+    classId: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
   });
   constructor(private responseService: ResponseService,
   public dialogRef: MatDialogRef<UploadPopUpComponent>) { }
@@ -30,7 +30,7 @@ export class UploadPopUpComponent {
       formData.append('class_id', this.loginForm.value.classId);
     }
     formData.append('has_wireguard', this.wireguard.toString());
-    this.responseService.postRequest('admin/upload_csv', formData)
+    this.responseService.postRequest('admin/upload_csv', formData).subscribe(() => {});
     this.dialogRef.close();
   };
 
