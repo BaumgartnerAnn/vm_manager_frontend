@@ -38,7 +38,7 @@ export class TemplateDetailComponent {
   }
   onDeployClick(template: Template): void {
     const dialogRef = this.dialog.open(DeployPopUpComponent, {
-      width: '550px', height: '510px',
+      width: '550px', height: '480px',
       data: { name: template.properties.get('name')?.value, dozent_buttons: this.dozent_buttons }
     });
   }

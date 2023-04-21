@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationPopUpComponent } from '../confirmation-pop-up/confirmation-pop-up.component';
 import { ResponseService } from 'app/services/response/response.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LdapEditProfileUser } from 'app/models/ldap-edit-profile-user';
+import { FetchService } from 'app/services/fetch/fetch.service';
 
 @Component({
   selector: 'app-select-user-pop-up',
@@ -12,31 +14,22 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./select-user-pop-up.component.css']
 })
 export class SelectUserPopUpComponent {
-  constructor(private responseService: ResponseService,
+  constructor(private fetchService: FetchService,
     public dialogRef: MatDialogRef<SelectUserPopUpComponent>,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
-  template_name: string = this.data.template_name;
-  public users: ProxmoxUser[] = [];
+  template_name: string = '';
+  public users: LdapEditProfileUser[] = [];
   allComplete: boolean = false;
   allSelected = false;
 
   ngOnInit(): void {
-    this.responseService.postRequest('get_users').subscribe((response: any) => {
-      if (response.users !== null) {
-        for (var key in response.users) {
-          this.users.push(new ProxmoxUser(key, response.users[key]));
-        }
-        this.users.sort((a, b) => a.properties.get('name')?.value.localeCompare(b.properties.get('name')?.value));
-      }
-      else {
-        console.log('Error');
-      }
-
-
+    this.template_name = this.data.template_name;
+    this.fetchService.getData<LdapEditProfileUser>('lieutenant/ldap_users', 'LdapEditProfileUser').subscribe((users) => {
+      users.sort((a, b) => a.properties.get('firstname')!.value.localeCompare(b.properties.get('firstname')!.value));
+      this.users = users;
     });
-
   }
   onClickCancel(): void {
     this.dialogRef.close()
@@ -66,12 +59,7 @@ export class SelectUserPopUpComponent {
     confirmRef.afterClosed().subscribe(result => {
       // We only want to close the pop up if the user clicks on the deploy button, not on the cancel button
       if (result) {
-        this.responseService.postRequest('handle_template/deploy_on_selected', { users: this.users.filter(user => user.selected).map(user => user.properties.get('name')?.value), template_name: this.template_name }).subscribe((response: any) => {
-          if (response.message === 'Success') {
-            console.log('Success');
-          }
-        });
-        this.dialogRef.close("deploy");
+        this.dialogRef.close(this.users.filter(user => user.selected).map(user => user.properties.get('uId')?.value));
       }
     }
     );

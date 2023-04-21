@@ -69,8 +69,7 @@ export class ChangePasswordPopUpComponent {
       });
     }
     else {
-      this.responseService.patchRequest('handle_user/change_password', { ...this.oldPasswordForm.value, ...this.myForm.value }).subscribe((response: any) => {
-        console.log(response);
+      this.responseService.patchRequest('handle_user/change_password', { ...this.oldPasswordForm.value, ...this.myForm.value }).subscribe(() => {
         this.dialogRef.close();
       });
     }

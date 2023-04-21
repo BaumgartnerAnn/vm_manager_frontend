@@ -5,7 +5,7 @@ import { FetchService } from 'app/services/fetch/fetch.service';
 import { LdapEditProfileUser } from 'app/models/ldap-edit-profile-user';
 import { ResponseService } from 'app/services/response/response.service';
 import { ConfirmationPopUpComponent } from '../pop-up/pop-up-buttons/confirmation-pop-up/confirmation-pop-up.component';
-import { EditUserComponent } from '../pop-up/edit-user/edit-user/edit-user.component';
+import { EditUserComponent } from '../pop-up/edit-user/edit-user.component';
 import { ChangePasswordPopUpComponent } from '../pop-up/change-password-pop-up/change-password-pop-up.component';
 import { ActionOnClassComponent } from '../pop-up/action-on-class/action-on-class.component';
 

@@ -1,6 +1,6 @@
 <div class="button-container">
     <div class="button-row">
         <button mat-raised-button (click)="onClickCancel()">Cancel</button>
-        <button mat-raised-button color="primary" (click)="onClickDeploy()" [disabled]="!name_given">Deploy</button>
+        <button mat-raised-button color="primary" (click)="onClickDeploy()" [disabled]="!name_given || vmType===''">Deploy</button>
     </div>
 </div>

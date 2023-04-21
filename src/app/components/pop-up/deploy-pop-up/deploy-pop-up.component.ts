@@ -18,6 +18,8 @@ export class DeployPopUpComponent {
   @Input() template_name: string = this.data.name;
   @Input() dozent_buttons: boolean = this.data.dozent_buttons;
   name: string = '';
+  typeOfVMs: string[] = ['Windows', 'Linux'];
+  typeOfVM: string = '';
   nameForm = new FormGroup({
     name: new FormControl('', Validators.required),
   });
@@ -42,5 +44,8 @@ export class DeployPopUpComponent {
   }
   Element3Change(newValue: number) {
     this.Storage = newValue;
+  }
+  changeTypeOfUser(selectedValue: string) {
+    this.typeOfVM = selectedValue;
   }
 }

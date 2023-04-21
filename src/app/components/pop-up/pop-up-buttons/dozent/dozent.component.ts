@@ -14,8 +14,14 @@ export class DozentPopUpButtonsComponent {
     private responseService: ResponseService,
     public dialog: MatDialog,
   ) { }
-  @Input() name: any;
+  @Input() vm_name: any;
   @Input() dialogRef: any;
+  @Input() RAM!: number;
+  @Input() Cores!: number;
+  @Input() Storage!: number;
+  @Input() name_given!: any;
+  @Input() template_name!: string;
+  @Input() vmType!: string;
   onClickDeployOnAll(): void {
     const confirmRef = this.dialog.open(ConfirmationPopUpComponent, {
       width: '290px',
@@ -24,19 +30,18 @@ export class DozentPopUpButtonsComponent {
     confirmRef.afterClosed().subscribe(result => {
       // We only want to close the pop up if the user clicks on the deploy button, not on the cancel button
       if (result) {
-        this.responseService.postRequest('handle_template/deploy_on_all', { template_name: this.name }).subscribe(() => {
-        });
+        this.responseService.postRequest('handle_template/deploy_on_all', { vmType: this.vmType, template_name: this.template_name, RAM: this.RAM, Cores: this.Cores, Storage: this.Storage, vm_name: this.vm_name }).subscribe(() => {});
         this.dialogRef.close();
       }
     });
   }
   onClickDeployOnSelected(): void {
     const dialogRef_1 = this.dialog.open(SelectUserPopUpComponent, {
-      width: '550px', data: { template_name: this.name }
-    });
+      width: '550px' , data: {'template_name': this.template_name}});
 
-    dialogRef_1.afterClosed().subscribe(result => {
-      if (result) {
+    dialogRef_1.afterClosed().subscribe(users=> {
+      if (users) {
+        this.responseService.postRequest('handle_template/deploy_on_selected', { users: users, vmType: this.vmType, template_name: this.template_name, RAM: this.RAM, Cores: this.Cores, Storage: this.Storage, vm_name: this.vm_name }).subscribe(() => {});
         this.dialogRef.close();
       }
     });

@@ -2,14 +2,19 @@
 <mat-divider></mat-divider>
 <form [formGroup]="nameForm" #formDirective="ngForm">
     <div class="center">
-        <mat-form-field>
+        <mat-form-field class="margin-right" >
             <input type="text" matInput formControlName="name" placeholder="Enter a VM name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose the VM type</mat-label>
+            <mat-select [(value)]="typeOfVM" (selectionChange)="changeTypeOfUser($event.value)">
+                <ng-container *ngFor="let option of typeOfVMs">
+                    <mat-option [value]="option">{{ option }}</mat-option>
+                </ng-container>
+            </mat-select>
         </mat-form-field>
     </div>
 </form>
-<!-- <mat-error *ngIf="nameForm.get('username')?.hasError('required')">
-    Username is required
-</mat-error> -->
 <app-pop-up-details [type]="'RAM'" [min]="RAMMin" [max]="32768" [maxlength]="5" [step_slider]="1" [step_input]="1024"
     (valueChange)="Element1Change($event)"></app-pop-up-details>
 <app-pop-up-details [type]="'Cores'" [min]="CoresMin" [max]="8" [maxlength]="1" [step_slider]="1" [step_input]="1"
@@ -18,9 +23,12 @@
     [step_input]="10" (valueChange)="Element3Change($event)"></app-pop-up-details>
 <mat-divider></mat-divider>
 <div *ngIf="dozent_buttons==false">
-    <app-deploy-popup-buttons [vm_name]="nameForm.get('name')?.value" [dialogRef]="dialogRef" [RAM]="RAM" [Cores]="Cores"
-        [Storage]="Storage" [name_given]="nameForm.get('name')?.valid" [template_name]="data.name"></app-deploy-popup-buttons>
+    <app-deploy-popup-buttons [vm_name]="nameForm.get('name')?.value" [dialogRef]="dialogRef" [RAM]="RAM"
+        [Cores]="Cores" [Storage]="Storage" [name_given]="nameForm.get('name')?.valid"
+        [template_name]="data.name" [vmType]="typeOfVM"></app-deploy-popup-buttons>
 </div>
 <div *ngIf="dozent_buttons==true">
-    <app-dozent-popup-buttons [name]="'dkfjk'" [dialogRef]="dialogRef"></app-dozent-popup-buttons>
+    <app-dozent-popup-buttons [vm_name]="nameForm.get('name')?.value" [dialogRef]="dialogRef" [RAM]="RAM"
+        [Cores]="Cores" [Storage]="Storage" [name_given]="nameForm.get('name')?.valid"
+        [template_name]="data.name" [vmType]="typeOfVM"></app-dozent-popup-buttons>
 </div>

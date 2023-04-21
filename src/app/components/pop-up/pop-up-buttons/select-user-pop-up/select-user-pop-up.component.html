@@ -2,9 +2,9 @@
     <mat-selection-list #list>
         <div *ngFor="let user of this.users">
             <mat-list-option [value]="user" (click)="userSelected(user)">
-                {{ user.properties.get('name')?.value }}
+                {{ user.properties.get('uId')?.value }}
             </mat-list-option>
-            <input type="checkbox" [(ngModel)]="user.selected" [name]="user.properties.get('name')?.value" hidden>
+            <input type="checkbox" [(ngModel)]="user.selected" hidden>
         </div>
     </mat-selection-list>
 

@@ -34,7 +34,7 @@ export class FetchService {
           } else if (type_of_data === 'ProxmoxNode') {
             data = response.map((proxmoxNodes: any) => new ProxmoxNode(proxmoxNodes.node, this.displayService, proxmoxNodes.maxcpu, proxmoxNodes.cpu, proxmoxNodes.maxmem, proxmoxNodes.mem, proxmoxNodes.status, proxmoxNodes.maxdisk, proxmoxNodes.disk));
           } else if (type_of_data === 'Template') {
-            data = response.template_names.map((templateName: { volid: string }) => {
+            data = response.map((templateName: { volid: string }) => {
               const template = new Template('', this.displayService);
               template.properties.get('name')?.setValue(templateName.volid.substring(10, templateName.volid.length));
               return template;
